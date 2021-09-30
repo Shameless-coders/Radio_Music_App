@@ -1,25 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, {useState, useEffect} from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
+import Login from './Login';
+import SignUp from './SignUp';
+import {firebase} from './Firebase/firebase';
+const Stack = createStackNavigator();
 
-export default function App() {
-    return (
-        <NavigationContainer>
-            <View style={styles.container}>
-                <Text>Open up App.js to start working on your app!</Text>
-                <StatusBar style="auto" />
-            </View>
-        </NavigationContainer>
-  );
+
+
+const App=() => {
+const [isSignedIn, setIsSignedIn]=useState(false);
+
+
+useEffect(()=>{
+ firebase.auth().onAuthStateChanged(user=>{
+if(user){
+  setIsSignedIn(true);
+}else{
+  setIsSignedIn(false);
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ })
+})
+  return (
+    <NavigationContainer>
+    <Stack.Navigator initialRouteName="Signup" screenOptions={{headerShown:false}}>
+    <Stack.Screen name="Login" component={Login}  />
+    <Stack.Screen name="SignUp" component={SignUp} />
+  </Stack.Navigator>
+  </NavigationContainer>
+  );
+};
+export default App;
