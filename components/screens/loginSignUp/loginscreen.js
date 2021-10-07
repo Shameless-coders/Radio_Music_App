@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet,Text ,Button,View,ScrollView,TextInput,TouchableOpacity } from 'react-native';
-import FormErrorMessage from './components/FormErrorMessage';
-import {firebase} from './Firebase/firebase';
+import {Image, StyleSheet, Text ,Button,View,ScrollView, TextInput,TouchableOpacity } from 'react-native';
+import FormErrorMessage from '../loginSignUp/FormErrorMessage';
+import { firebase } from '../../../Firebase/firebase';
 
 
 const Login = ({navigation}) => {
@@ -23,7 +23,7 @@ const validatInput=()=>{
     return setFormErrorMessage(true);
   }
 
-  firebase.auth().signInIWithEmailandPassword(email,password).then(()=>{
+  firebase.auth().signInWithEmailAndPassword(email,password).then(()=>{
 
   }).catch(error=>{
     setErrorMessage(error.message);
@@ -45,7 +45,7 @@ function PasswordChange(value){
      <View style={styles.TopView}>
      <Image
        style={styles.logoImg}
-       source={require('./assets/images/logo.png')}
+       source={require('../../../assets/images/logo.png')}
      />
      </View>
      <ScrollView style={styles.BottomView}>

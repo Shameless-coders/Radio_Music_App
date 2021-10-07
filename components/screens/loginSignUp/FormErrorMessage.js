@@ -11,7 +11,7 @@ import {Overlay} from 'react-native-elements';
 
 const FormErrorMessage = (props) => {
   return (<Overlay overlayStyle={styles.Overlay} isVisible={true} onBackdropPress={() => props.hideErrorOverlay(false)}>
-    <Image style={styles.errorLogo} source={require('../assets/images/error.png')}/>
+    <Image style={styles.errorLogo} source={require('../../../assets/images/error.png')}/>
     <Text style={styles.errorMsg}>{props.error}</Text>
     <TouchableOpacity style={styles.buttonError} onPress={() => props.hideErrorOverlay(false)}>
       <Text style={{

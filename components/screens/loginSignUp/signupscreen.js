@@ -1,11 +1,11 @@
 import React,{useState} from 'react';
 import {Image, StyleSheet,Text ,Button,View,ScrollView,TextInput,TouchableOpacity, ActivityIndicator } from 'react-native';
-import {firebase} from './Firebase/firebase';
+import { firebase } from '../../../Firebase/firebase';
 import { Overlay } from 'react-native-elements';
-import FormSuccessMessage from './components/FormSuccessMessage';
-import FormErrorMessage from './components/FormErrorMessage';
+import FormSuccessMessage from '../loginSignUp/FormSuccessMessage';
+import FormErrorMessage from '../loginSignUp/FormErrorMessage';
 
-const SignUp = ({navigation}) => {
+  const SignUp = ({navigation}) => {
   const [fullName,setFullName] = useState('');
    const [email,setEmail] = useState('');
    const [errorMessage,setErrorMessage] = useState('');
@@ -15,6 +15,12 @@ const SignUp = ({navigation}) => {
    const [confirmPassword,setConfirmPassword] = useState();
    const [displayFormErrorMessage,setFormErrorMessage] = useState(false);
   const [displayFormSuccessMessage,setFormSuccesMessage] = useState(false);
+
+  function navigate(){
+      navigation.navigate('Login');
+    // console.log(firebase);
+  }
+
   function FullNameChange(value){
     setFullName(value);
   }
@@ -36,7 +42,7 @@ const SignUp = ({navigation}) => {
    setIsLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email,password).then(()=>{
       setIsLoading(false);
-       setSuccesMessage("Congratulations, your account has been create! Please Login to compete the Sign Up")
+       setSuccesMessage("Congratulations, your account has been created! Please Login to compete the Sign Up")
     }).catch((error) => {
       setIsLoading(false);
       setErrorMessage(error.message);
@@ -59,16 +65,11 @@ if(!password_match){
   return setFormErrorMessage(true);
 
 }
-
   if(password_match) return createUser();
-
 
  }
 
-  function navigate(){
-    navigation.navigate('Login');
-    console.log(firebase);
-  }
+
   return (
 
     <View style={styles.mainView}>
@@ -77,7 +78,7 @@ if(!password_match){
 
      <Image
        style={styles.logoImg}
-       source={require('./assets/images/logo.png')}
+       source={ require('../../../assets/images/logo.png')}
      />
     </View>
 
@@ -109,13 +110,12 @@ if(!password_match){
  }
  { isloading == true ?
  <FormSuccessMessage  />
-: successMessage == "Congratulations, your account has been create! Please Login to compete the Sign Up" ?
+: successMessage == "Congratulations, your account has been created! Please Login to compete the Sign Up" ?
  <FormSuccessMessage successMessage={successMessage} />
    : null
 }
 
 </View>
-
 
   )
 
