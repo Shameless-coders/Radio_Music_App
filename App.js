@@ -15,6 +15,7 @@ import Profile from './components/screens/main/profilescreen';
 
 export default function App(){
 
+    {/*setting initial sign in state to false */}
   const [isSignedIn, setIsSignedIn ]= useState(false);
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
@@ -31,7 +32,7 @@ if(user){
  })
 },[])
 
-if(isSignedIn == true){
+if(isSignedIn === true){
     return (
       <NavigationContainer>
         <Tab.Navigator
