@@ -1,27 +1,3 @@
-// import React, { Component } from "react";
-// import { StyleSheet, Text, View, Flatlist, TextInput } from "react-native";
-
-// class Radio extends Component {
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         <Text>Radio Streaming!</Text>
-//       </View>
-//     );
-//   }
-// }
-
-// export default Radio;
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-// });
-
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import {
