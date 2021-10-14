@@ -10,6 +10,7 @@ import Music from './components/screens/main/musicscreen';
 import Favourite from './components/screens/main/favouritescreen';
 import Radio from './components/screens/main/radioscreen';
 import Profile from './components/screens/main/profilescreen';
+import displayLyrics from './components/screens/main/lyrics';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,7 +26,8 @@ export default function App() {
                 Music: "music",
                 Favourites: "heart",
                 Radio: "radio",
-                Profile: "account"
+                Profile: "account",
+                Lyrics: "book-music"
               };
 
               return (
@@ -60,6 +62,10 @@ export default function App() {
           <Tab.Screen 
             name="Profile" 
             component={ Profile } 
+          />
+          <Tab.Screen 
+            name="Lyrics" 
+            component={ displayLyrics } 
           />
         </Tab.Navigator>
       </NavigationContainer>
