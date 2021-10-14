@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text ,Button,View,ScrollView, TextInput,TouchableOpacity } from 'react-native';
+import {Image, StyleSheet, Text ,View,ScrollView, TextInput,TouchableOpacity } from 'react-native';
 import { SocialIcon } from 'react-native-elements'
 import FormErrorMessage from '../loginSignUp/FormErrorMessage';
 import { firebase } from '../../../Firebase/firebase';
@@ -14,7 +14,7 @@ const Login = ({navigation}) => {
     navigation.navigate('SignUp');
   }
 
-
+    {/* */}
 const validatInput=()=>{
 
   var form_inputs = [email, password];
@@ -62,8 +62,8 @@ function PasswordChange(value){
 
      <View style={styles.FormView}>
 
-      <TextInput placeholder={"Email address*"} value={email} onChangeText={EmailChange} placeholderTextColor={"#333"}style={styles.TextInput}/>
-      <TextInput secureTextEntry={true}  value={password} onChangeText={PasswordChange} placeholder={"Password*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
+      <TextInput placeholder={"Email address*"} value={email} onChangeText={EmailChange} placeholderTextColor={"#333"} style={styles.TextInput}/>
+      <TextInput secureTextEntry={true}  value={password} onChangeText={PasswordChange} placeholder={"Password*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
       <TouchableOpacity style={styles.ButtonLogin} onPress={validatInput}>
       <Text style={{ color:'#fff',fontSize:20,}}>Login</Text>
       </TouchableOpacity>
@@ -76,7 +76,7 @@ function PasswordChange(value){
         </TouchableOpacity>
     </View>
         </ScrollView>
-        {displayFormErrorMessage == true ?
+        {displayFormErrorMessage === true ?
        <FormErrorMessage  hideErrorOverlay ={setFormErrorMessage} error={errorMessage}/>
        : null
         }
