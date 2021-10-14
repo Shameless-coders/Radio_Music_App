@@ -14,7 +14,7 @@ const Login = ({navigation}) => {
     navigation.navigate('SignUp');
   }
 
-
+    {/* */}
 const validatInput=()=>{
 
   var form_inputs = [email, password];
