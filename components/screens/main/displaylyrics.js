@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Placeholder from 'rn-placeholder';
 
 export default function Lyrics(props){
     const displayLyrics = (props) => {
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
     },
     lyrics:{
        backgroundColor:'#000000d0',
-       fontFamily:'cursive',
        marginTop:30,
        textAlign:"center",
        color:'#fff',
