@@ -1,15 +1,13 @@
 import { StyleSheet, View, Text, Image, Button } from 'react-native';
 import React, { Component }  from 'react';
 import { useNavigation } from '@react-navigation/native';
-
 import Onboarding from 'react-native-onboarding-swiper';
 
 const OnBoarding = ({navigation}) => {
-  
+
   function navigate(){
     navigation.navigate('SignUp');
   }
-
 
 const Square = ({ isLight, selected }) => {
   let backgroundColor;
@@ -126,13 +124,9 @@ const Next = ({ isLight, ...props }) => (
 
 export default OnBoarding;
 
-
-
-
 const styles = StyleSheet.create({
    slide: {
        flex: 1,
        backgroundColor: '#EAF8E4',
    }
 });
-

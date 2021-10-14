@@ -29,6 +29,7 @@
     "react-native-screens": "^3.7.2",
     "react-native-svg": "12.1.1",
     "styled-components": "^5.3.1",
+    "react-native-onboarding-swiper": "*",
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
