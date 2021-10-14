@@ -3,35 +3,29 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function Lyrics(props){
     const displayLyrics = (props) => {
-        
-        console.log(props);
+  console.log(props);
             return(
-                <View style={styles.container}>
+
                 <ScrollView style={styles.scroll}>
+                  <View style={styles.container}>
                     <Text style={styles.songname}>{props.songname}</Text>
                     <Text style={styles.artist}>{props.artistname}</Text>
                     <View style={styles.lyricscontainer}>
-                    
                       <Text style={styles.lyrics}>
                             {props.lyrics}
-                            
                       </Text>
-            
-                        
+                    </View>
                     </View>
                 </ScrollView>
-                </View>
 
             );
-           
-        
     }
     return(
         <>
         {displayLyrics(props)}
-        </>
+      </>
     );
-}
+  }
 const styles = StyleSheet.create({
     container: {
       flex: 1,

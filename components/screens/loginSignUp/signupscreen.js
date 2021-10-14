@@ -20,7 +20,6 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
       navigation.navigate('Login');
     // console.log(firebase);
   }
-
   function FullNameChange(value){
     setFullName(value);
   }
@@ -36,8 +35,6 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
   function ConfirmPasswordChange(value){
     setConfirmPassword(value);
   }
-
-
  function createUser(){
    setIsLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email,password).then(()=>{
@@ -57,18 +54,15 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
   if(form_inputs.includes('') || form_inputs.includes(undefined)){
     setErrorMessage("Please fill in all fields");
     return setFormErrorMessage(true);
-
   }
 
 if(!password_match){
   setErrorMessage("Passwords do not match");
   return setFormErrorMessage(true);
-
 }
   if(password_match) return createUser();
 
  }
-
 
   return (
 
@@ -81,7 +75,6 @@ if(!password_match){
        source={ require('../../../assets/images/logo.png')}
      />
     </View>
-
      <ScrollView style={styles.BottomView}>
      <Text style={styles.loginHeading}>
      Sign Up!
@@ -104,13 +97,13 @@ if(!password_match){
       </TouchableOpacity>
     </View>
      </ScrollView>
- {displayFormErrorMessage == true ?
+ {displayFormErrorMessage === true ?
 <FormErrorMessage  hideErrorOverlay ={setFormErrorMessage} error={errorMessage}/>
 : null
  }
- { isloading == true ?
+ { isloading === true ?
  <FormSuccessMessage  />
-: successMessage == "Congratulations, your account has been created! Please Login to compete the Sign Up" ?
+: successMessage === "Congratulations, your account has been created! Please Login to compete the Sign Up" ?
  <FormSuccessMessage successMessage={successMessage} />
    : null
 }
@@ -193,14 +186,12 @@ const styles = StyleSheet.create({
  },
 
  RegisterNow:{
-
  display:'flex',
  flexDirection:'row',
  alignItems:'center',
  justifyContent:'flex-start',
  marginLeft:30,
  marginTop:10,
-
 
  }
 })
