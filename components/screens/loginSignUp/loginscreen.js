@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text ,Button,View,ScrollView, TextInput,TouchableOpacity } from 'react-native';
+import {Image, StyleSheet, Text ,View,ScrollView, TextInput,TouchableOpacity } from 'react-native';
+import { SocialIcon } from 'react-native-elements'
 import FormErrorMessage from '../loginSignUp/FormErrorMessage';
 import { firebase } from '../../../Firebase/firebase';
 
@@ -13,7 +14,7 @@ const Login = ({navigation}) => {
     navigation.navigate('SignUp');
   }
 
-
+    {/* */}
 const validatInput=()=>{
 
   var form_inputs = [email, password];
@@ -61,14 +62,21 @@ function PasswordChange(value){
 
      <View style={styles.FormView}>
 
-      <TextInput placeholder={"Email address*"} value={email} onChangeText={EmailChange} placeholderTextColor={"#333"}style={styles.TextInput}/>
-      <TextInput secureTextEntry={true}  value={password} onChangeText={PasswordChange} placeholder={"Password*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
+      <TextInput placeholder={"Email address*"} value={email} onChangeText={EmailChange} placeholderTextColor={"#333"} style={styles.TextInput}/>
+      <TextInput secureTextEntry={true}  value={password} onChangeText={PasswordChange} placeholder={"Password*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
       <TouchableOpacity style={styles.ButtonLogin} onPress={validatInput}>
       <Text style={{ color:'#fff',fontSize:20,}}>Login</Text>
       </TouchableOpacity>
+      <Text style={styles.LoginOptText}>Or</Text>
+        <TouchableOpacity>
+          <SocialIcon style={{ padding:20}}
+            title='Sign In With Facebook'
+            button type='facebook'
+           />
+        </TouchableOpacity>
     </View>
         </ScrollView>
-        {displayFormErrorMessage == true ?
+        {displayFormErrorMessage === true ?
        <FormErrorMessage  hideErrorOverlay ={setFormErrorMessage} error={errorMessage}/>
        : null
         }
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
    flexDirection: 'column',
    justifyContent:'center',
    alignItems:'center',
-   marginTop:40,
+   marginTop:10,
  },
 
  TextInput:{
@@ -147,6 +155,16 @@ const styles = StyleSheet.create({
    justifyContent:'center',
    alignItems:'center',
  },
+ ButtonFb:{
+   width:'70%',
+   height:52,
+   backgroundColor:'#1778F2',
+   marginTop:20,
+   borderRadius: 10,
+   display:'flex',
+   justifyContent:'center',
+   alignItems:'center',
+ },
 
  RegisterNow:{
 
@@ -158,5 +176,8 @@ const styles = StyleSheet.create({
  marginTop:10,
 
 
- }
+},
+LoginOptText:{
+  marginTop:15,
+}
 })
