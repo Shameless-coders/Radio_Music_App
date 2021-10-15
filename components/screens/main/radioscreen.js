@@ -37,7 +37,7 @@ const Search = () => {
       .then((response) => response.json())
       .then((json) => {
         setData(json);
-        console.log(json);
+        // console.log(json);
         // setTitle(json.title);
         // setDescription(json.description);
       })
