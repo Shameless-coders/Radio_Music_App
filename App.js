@@ -11,7 +11,8 @@ import Music from './components/screens/main/musicscreen';
 import Favourite from './components/screens/main/favouritescreen';
 import Radio from './components/screens/main/radioscreen';
 import Profile from './components/screens/main/profilescreen';
-
+import displayLyrics from './components/screens/main/lyrics';
+import OnboardingScreens from './components/screens/main/OnBoardingScreen';
 
 export default function App(){
 
@@ -44,7 +45,8 @@ if(isSignedIn === true){
                 Music: "music",
                 Favourites: "heart",
                 Radio: "radio",
-                Profile: "account"
+                Profile: "account",
+                Lyrics: "book-music"
               };
 
               return (
@@ -80,13 +82,18 @@ if(isSignedIn === true){
             name="Profile"
             component={ Profile }
           />
+          <Tab.Screen 
+            name="Lyrics" 
+            component={ displayLyrics } 
+          />
         </Tab.Navigator>
       </NavigationContainer>
   );
 }else{
   return(
   <NavigationContainer>
-  <Stack.Navigator initialRouteName="Signup" screenOptions={{headerShown:false}}>
+  <Stack.Navigator initialRouteName="Onboarding" screenOptions={{headerShown:false}}>
+  <Stack.Screen name="Onboarding" component={OnboardingScreens}  />
   <Stack.Screen name="Login" component={Login}  />
   <Stack.Screen name="SignUp" component={SignUp} />
   </Stack.Navigator>
@@ -94,3 +101,4 @@ if(isSignedIn === true){
 );
 }
 }
+

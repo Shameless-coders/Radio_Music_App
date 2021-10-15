@@ -14,6 +14,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "@react-navigation/stack": "^6.0.7",
+    "axios": "^0.23.0",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
     "firebase": "8.2.3",
@@ -29,6 +30,7 @@
     "react-native-screens": "^3.7.2",
     "react-native-svg": "12.1.1",
     "styled-components": "^5.3.1",
+    "react-native-onboarding-swiper": "*",
     "styled-system": "^5.1.5"
   },
   "devDependencies": {
