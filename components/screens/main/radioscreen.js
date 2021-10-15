@@ -45,41 +45,44 @@ const Search = () => {
       .finally(() => setLoading(false));
   }, [URL]);
 
-
-
   return (
     <View style={styles.container}>
-      <View style={styles.searchContainer}>  
-        <Image source={require('../../../assets/images/logo.png')} 
-             style={styles.logoImg} />
-      <TextInput
-        placeholder="Search"
-        placeholderTextColor="#fff"
-        onChangeText={(val) => setCountry(val)}
-        style={styles.input}
-      />
+      <View style={styles.searchContainer}>
+        <Image
+          source={require("../../../assets/images/logo.png")}
+          style={styles.logoImg}
+        />
+        <TextInput
+          placeholder="Search"
+          placeholderTextColor="#fff"
+          onChangeText={(val) => setCountry(val)}
+          style={styles.input}
+        />
       </View>
-    
+
       <Text style={styles.textStylingChannels}>Channels</Text>
       <FlatList
         data={data}
         key={data.changeuuid}
-        keyExtractor={({ id }, index) => id}
+        // keyExtractor={({ id }, index) => id}
+        keyExtractor={(value, index) => index.toString()}
         renderItem={({ item }) => (
-          <View style={styles.stationsContainer}>
+          <View style={styles.stationsContainer} key={item.id}>
             <View>
-      
-            <Image
-              source={{ uri: item.favicon ? item.favicon : 'https://www.iconsdb.com/icons/preview/orange/tabletop-radio-xxl.png'}}
-              style={{ width: 90, height: 90 }}
-            />
+              <Image
+                source={{
+                  uri: item.favicon
+                    ? item.favicon
+                    : "https://www.iconsdb.com/icons/preview/orange/tabletop-radio-xxl.png",
+                }}
+                style={{ width: 90, height: 90 }}
+              />
             </View>
             <View style={styles.stationsTextContainer}>
               <Text style={styles.stationText}>
-              {item.name} {"\n"}
+                {item.name} {"\n"}
               </Text>
             </View>
-        
           </View>
         )}
       />
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#1E2A6B",
     justifyContent: "center",
     color: "#fff",
-    paddingLeft: 15
+    paddingLeft: 15,
   },
   input: {
     backgroundColor: "#242c59",
@@ -106,38 +109,37 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignContent: "center",
     paddingLeft: 10,
-    
   },
   stationsContainer: {
     color: "#F5F5F5",
     marginTop: 20,
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   },
-  logoImg:{
+  logoImg: {
     height: 75,
-    width: 75
+    width: 75,
   },
-  searchContainer:{
+  searchContainer: {
     flexDirection: "row",
-    paddingTop: 20
+    paddingTop: 20,
   },
-  textStylingChannels:{
+  textStylingChannels: {
     color: "#c4c3c3",
     marginTop: 10,
-    fontSize: 22
+    fontSize: 22,
   },
   stationsTextContainer: {
     marginLeft: 15,
-    fontSize: 10
+    fontSize: 10,
   },
 
   stationText: {
     color: "#fff",
     fontSize: 15,
     flexWrap: "wrap",
-    width: 250
-  }
+    width: 250,
+  },
 });
 
 export default Search;
