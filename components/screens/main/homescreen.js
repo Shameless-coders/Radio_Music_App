@@ -1,12 +1,13 @@
+import React, { Component, useState, useEffect } from "react";
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from 'react-native';
 import { Card } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { firebase } from '../../../Firebase/firebase.js';
-
-import Search from "./radioscreen.js";
+import RadioCards from '../../api_cards/radio_cards';
+import MusicCards from "../../api_cards/music_cards.js";
 
 class Home extends Component {
     render() {
@@ -16,47 +17,19 @@ class Home extends Component {
         return (
           <ScrollView style={styles.container}>
             <Text style={styles.greeting}>Welcome {email}!</Text>
-            <View style={styles.displayInline}>
-              <Text style={styles.subTitle}>Music</Text>
-              <MaterialCommunityIcons style={styles.icon} name={'magnify'} />
-            </View>
-              <ScrollView style={styles.row} horizontal={true}>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/images/logo-2.png')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>Heartbreak Arcade</Card.Title>
-                </Card>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/images/logo-2.png')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>Heartbreak Arcade</Card.Title>
-                </Card>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/images/logo-2.png')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>Heartbreak Arcade</Card.Title>
-                </Card>
+              <ScrollView style={styles.row}>
+                <View style={styles.displayInline}>
+                  <Text style={styles.subTitle}>Music</Text>
+                  <MaterialCommunityIcons style={styles.icon} name={'magnify'} />
+                </View>
+                <MusicCards />
               </ScrollView>
-              <View style={styles.displayInline}>
-                <Text style={styles.subTitle}>Radio</Text>
-                <MaterialCommunityIcons style={styles.icon} name={'magnify'} />
-              </View>
-              <ScrollView style={styles.row} horizontal={true}>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/fulllogo.jpeg')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>91.5 FM</Card.Title>
-                </Card>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/fulllogo.jpeg')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>92.5 FM</Card.Title>
-                </Card>
-                <Card containerStyle={styles.card}>
-                  <Card.Image style={styles.cardimg} source={require('../../../assets/fulllogo.jpeg')}></Card.Image>
-                  <Card.Divider />
-                  <Card.Title style={styles.cardTitle}>93.5 FM</Card.Title>
-                </Card>
+              <ScrollView style={styles.row}>
+                <View style={styles.displayInline}>
+                  <Text style={styles.subTitle}>Radio</Text>
+                  <MaterialCommunityIcons style={styles.icon} name={'magnify'} />
+                </View>
+                <RadioCards />
               </ScrollView>
           </ScrollView>
         );
@@ -85,7 +58,7 @@ const styles = StyleSheet.create({
     },
     subTitle: {
       color: '#FFF',
-      fontSize: 18,
+      fontSize: 20,
       marginLeft: 10,
     },
     icon: {
@@ -93,16 +66,4 @@ const styles = StyleSheet.create({
       color: '#FFF',
       marginLeft: 250,
     },
-    card: {
-      width: 200,
-      borderColor: '#A6A7E7',
-      backgroundColor: '#191C55',
-    },
-    cardimg: {
-      resizeMode: "contain",
-    },
-    cardTitle: {
-      color: '#A6A7E7',
-      fontSize: 16,
-    }
   });
