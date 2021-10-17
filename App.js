@@ -11,7 +11,7 @@ import Music from './components/screens/main/musicscreen';
 import Favourite from './components/screens/main/favouritescreen';
 import Radio from './components/screens/main/radioscreen';
 import Profile from './components/screens/main/profilescreen';
-import displayLyrics from './components/screens/main/lyrics';
+import Lyrics from './components/screens/main/lyricsscreen';
 import OnboardingScreens from './components/screens/main/OnBoardingScreen';
 
 export default function App(){
@@ -84,7 +84,7 @@ if(isSignedIn === true){
           />
           <Tab.Screen 
             name="Lyrics" 
-            component={ displayLyrics } 
+            component={ Lyrics } 
           />
         </Tab.Navigator>
       </NavigationContainer>
