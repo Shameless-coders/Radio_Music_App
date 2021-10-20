@@ -17,6 +17,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { style } from "styled-system";
+import { Audio } from 'expo-av';
 const Stack = createStackNavigator();
 
 const Search = () => {
@@ -71,12 +72,12 @@ const Search = () => {
         key={data.changeuuid}
         // keyExtractor={({ id }, index) => id}
         keyExtractor={(value, index) => index.toString()}
-        renderItem={({ item }) => (
+        renderItem={({ item,index }) => (
           <View style={styles.stationsContainer} key={item.id}>
             <View>
               <TouchableOpacity onPress={() => {
                 navigation.navigate("radioPlayer",{
-                  itemIndex: 1,
+                  itemIndex: index,
                 });
               }}>
               <Image
@@ -107,9 +108,11 @@ function radioPlayer() {
   const URL = `https://radio-browser.p.rapidapi.com/json/stations/search?country=${country}&reverse=false&offset=0&limit=15&hidebroken=false`;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const route = useRoute();
+  let {itemIndex} = route.params;
 
   //Set up the radio player page
-  const [radioLink, setRadioLink] = useState(1);
+  const [radioLink, setRadioLink] = useState({itemIndex}.itemIndex);
   const [radioName, setRadioName] = useState('');
   const [sound, setSound] = useState();
 
@@ -180,7 +183,7 @@ function radioPlayer() {
         <TouchableOpacity onPress={()=>playRadio(radioLink-1)}>
           <Image source={require('../../../assets/images/previous.png')} style={styles.buttons}/>
         </TouchableOpacity>
-        <TouchableOpacity onPress={()=>playRadio(radioLink)}>
+        <TouchableOpacity onPress={()=>playRadio(radioLink)} >
           <Image source={require('../../../assets/images/play.png')} style={styles.playButton}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>playRadio(radioLink+1)}>
