@@ -95,7 +95,7 @@ const Next = ({ isLight, ...props }) => (
       pages={[
         {
           backgroundColor: '#161549',
-          image: <Image source={require('../../../assets/Fulllogo.PNG')} />,
+          image: <Image source={require('../../../assets/Fulllogo.png')} />,
         },
         {
           backgroundColor: '#161549',
