@@ -1,37 +1,44 @@
 import React, { Component } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { Card, SearchBar } from "react-native-elements";
+import { ActivityIndicator, StyleSheet, View, Image } from 'react-native';
+import { SearchBar } from "react-native-elements";
 
 import SearchBody from "../../search/searchbody";
 
 class Music extends Component {
-  state = {
-    searchMusic:'',
-    musicData: [],
-    musicFound: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchMusic: '',
+      musicData: [],
+      musicFound: false
+    };
+  }
+  
   
   music_search = () => {
     const musicQuery = this.state.searchMusic.toLowerCase();
 
     const axios = require("axios");
+    const url = 'https://deezerdevs-deezer.p.rapidapi.com/search&limit=15'
 
     axios({
       method: 'GET',
-      url: 'https://deezerdevs-deezer.p.rapidapi.com/search',
+      url: url,
       params: {q: musicQuery},
       headers: {
         'x-rapidapi-host': 'deezerdevs-deezer.p.rapidapi.com',
         'x-rapidapi-key': '28ef96556amsh63000c2e224a8cfp1806e9jsn1a1938144972'
       }
-    }).then((response) => {
-      console.log(response.data)
+    }).then((res) => {
+      console.log(res.data)
 
-      var DATA = response.data;
+      var DATA = res.data.data ? res.data.data : false
 
       this.setState({
         musicData: DATA,
-      });
+        musicFound: true
+      })
+      // console.log(DATA)
 
     }).catch((error) => {
       console.error(error);
@@ -42,32 +49,30 @@ class Music extends Component {
   }
 
   renderContent = () => {
-    if(this.state.musicData) {
-      return (
+      return( 
         <SearchBody musicData={this.state.musicData} />
-      );
-    } else {
-      <Text>Music Not Found!</Text>
-    }
+      )
   }
   
     render() {
-      const {musicData} = this.state;
         return (
             <View style={styles.container}>
-              <SearchBar 
-                containerStyle={{backgroundColor: '#A6A7E7', borderRadius: 15}}
-                inputContainerStyle={{backgroundColor: '#191C55', borderRadius: 15}}
-                placeholder="Search for a song..." 
-                platform='default'
-                value={this.state.searchMusic} 
-                onChangeText={(searchMusic) => this.setState({ searchMusic })} 
-                onSubmitEditing={this.music_search}
-                music_search={this.music_search}
-              />
-              <View>
-                {this.renderContent()}
+              <View style={styles.displayInline}>
+                <Image style={styles.logo} source={require("../../../assets/images/logo.png")} />
+                <SearchBar 
+                  containerStyle={styles.input}
+                  inputContainerStyle={{color: '#fff', backgroundColor: 'none', borderColor: '#A6A7E7'}}
+                  placeholder="Search for a song..." 
+                  platform='default'
+                  value={this.state.searchMusic} 
+                  onChangeText={(searchMusic) => this.setState({ searchMusic })} 
+                  onSubmitEditing={this.music_search}
+                  music_search={this.music_search}
+                />
               </View>
+              {
+                this.renderContent()
+              }
             </View>
         );
     }
@@ -78,6 +83,23 @@ export default Music;
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#191C55',
+      backgroundColor: '#1E2667',
+    },
+    displayInline: {
+      flexDirection: 'row',
+      padding: 10,
+    },
+    logo: {
+      height: 75,
+      width: 75,
+    },
+    input: {
+      backgroundColor: "#242c59",
+      width: 250,
+      height: 55,
+      marginLeft: 5,
+      marginTop: 10,
+      borderRadius: 15,
+      borderColor: "#A6A7E7",
     },
   });
