@@ -108,12 +108,14 @@ function radioPlayer() {
   const URL = `https://radio-browser.p.rapidapi.com/json/stations/search?country=${country}&reverse=false&offset=0&limit=15&hidebroken=false`;
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const navigation = useNavigation();
   const route = useRoute();
   let {itemIndex} = route.params;
 
   //Set up the radio player page
   const [radioLink, setRadioLink] = useState({itemIndex}.itemIndex);
   const [radioName, setRadioName] = useState('');
+  const [cat,setCat] =useState('');
   const [sound, setSound] = useState();
 
 
@@ -146,7 +148,8 @@ function radioPlayer() {
       { uri: data[prop].url },
       { shouldPlay: true },
       setRadioLink(prop),
-      setRadioName(data[prop].name)
+      setRadioName(data[prop].name),
+      setCat(styles.cat)
     );
     setSound(sound);
 
@@ -165,11 +168,12 @@ function radioPlayer() {
 
   return (
     <SafeAreaView style={styles.playerContainer}>
-      <View>
-        <Text> Playing... </Text>
-      </View>
-      <View>
-        <Text style={styles.currentRadio}> you are listening to {radioName}</Text>
+      <TouchableOpacity onPress={() =>navigation.goBack()} >
+        <Image source={require('../../../assets/images/go-back.png')} style={styles.goBackButton}/>
+      </TouchableOpacity>
+      <View style={styles.currentRadio}>
+        <Text style={styles.currentPlaying}> you are listening to {radioName}</Text>
+        <Image source={{url:'https://media3.giphy.com/media/jpbnoe3UIa8TU8LM13/giphy.gif?cid=ecf05e47r1623rss2gol26uslycohbnspebjuwf7hrblrqn2&rid=giphy.gif&ct=g'}} style={cat}/>
       </View>
       <View>
         <Image source={require('../../../assets/images/1200px-Heart_corazón.svg.png')} style={styles.heart}/>
@@ -279,9 +283,20 @@ const styles = StyleSheet.create({
     borderColor:"white",
     borderStyle:"solid",
     backgroundColor:"black",
+
+    paddingTop:40
+  },
+
+  currentPlaying:{
     color:"white",
     textAlign:'center',
-    paddingTop:50
+  },
+
+  cat:{
+    height: 80,
+    width: 100,
+    marginTop:40,
+    marginLeft:100
   },
 
   heart:{
@@ -300,6 +315,13 @@ const styles = StyleSheet.create({
     width: 120,
     height: 200,
     marginTop:-45
+  },
+
+  goBackButton:{
+    width: 120,
+    height:70,
+
+
   }
 
 
