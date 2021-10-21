@@ -198,7 +198,7 @@ function radioPlayer() {
   );
 }
 
-function radioo(){
+function radio(){
   return(
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="Radio" screenOptions={{headerShown:false}}>
@@ -328,5 +328,5 @@ const styles = StyleSheet.create({
 
 });
 
-export default radioo;
+export default radio;
 
