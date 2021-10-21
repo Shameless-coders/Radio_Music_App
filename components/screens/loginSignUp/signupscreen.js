@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {Image, StyleSheet,Text ,Button,View,ScrollView,TextInput,TouchableOpacity, ActivityIndicator } from 'react-native';
+import {Image, StyleSheet,Text,View, ScrollView, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { firebase } from '../../../Firebase/firebase';
 import { Overlay } from 'react-native-elements';
 import FormSuccessMessage from '../loginSignUp/FormSuccessMessage';
@@ -9,12 +9,12 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
   const [fullName,setFullName] = useState('');
    const [email,setEmail] = useState('');
    const [errorMessage,setErrorMessage] = useState('');
-  const [successMessage,setSuccesMessage] = useState('');
-  const [isloading,setIsLoading]= useState(false);
+  const [successMessage,setSuccessMessage] = useState('');
+  const [isLoading,setIsLoading]= useState(false);
    const [password,setPassword] = useState();
    const [confirmPassword,setConfirmPassword] = useState();
    const [displayFormErrorMessage,setFormErrorMessage] = useState(false);
-  const [displayFormSuccessMessage,setFormSuccesMessage] = useState(false);
+
 
   function navigate(){
       navigation.navigate('Login');
@@ -39,7 +39,8 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
    setIsLoading(true);
     firebase.auth().createUserWithEmailAndPassword(email,password).then(()=>{
       setIsLoading(false);
-       setSuccesMessage("Congratulations, your account has been created! Please Login to compete the Sign Up")
+       setSuccessMessage("Your account has been created! Please Login to complete the Sign Up");
+       console.log(successMessage);
     }).catch((error) => {
       setIsLoading(false);
       setErrorMessage(error.message);
@@ -47,9 +48,9 @@ import FormErrorMessage from '../loginSignUp/FormErrorMessage';
     });
  }
 
- function validatFrom() {
-  var form_inputs = [fullName,email,password,confirmPassword];
-  var password_match = password == confirmPassword;
+ function validateFrom() {
+  let form_inputs = [fullName,email,password,confirmPassword];
+  let password_match = password === confirmPassword;
 
   if(form_inputs.includes('') || form_inputs.includes(undefined)){
     setErrorMessage("Please fill in all fields");
@@ -87,12 +88,12 @@ if(!password_match){
      </View>
 
      <View style={styles.FormView}>
-     <TextInput onChangeText={FullNameChange} value={fullName} placeholder={"Full Name*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
-      <TextInput onChangeText={EmailChange} value={email} placeholder={"Email address*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
-      <TextInput  onChangeText={PasswordChange} value={password} secureTextEntry={true}  placeholder={"Password*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
-      <TextInput   onChangeText={ConfirmPasswordChange} value={confirmPassword} secureTextEntry={true}  placeholder={" Re-Type Password*"} placeholderTextColor={"#333"}style={styles.TextInput}/>
+     <TextInput onChangeText={FullNameChange} value={fullName} placeholder={"Full Name*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
+      <TextInput onChangeText={EmailChange} value={email} placeholder={"Email address*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
+      <TextInput  onChangeText={PasswordChange} value={password} secureTextEntry={true}  placeholder={"Password*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
+      <TextInput   onChangeText={ConfirmPasswordChange} value={confirmPassword} secureTextEntry={true}  placeholder={" Re-Type Password*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
 
-      <TouchableOpacity style={styles.ButtonLogin} onPress={validatFrom} >
+      <TouchableOpacity style={styles.ButtonLogin} onPress={validateFrom} >
       <Text style={{ color:'#fff',fontSize:20,}}>Sign Up</Text>
       </TouchableOpacity>
     </View>
@@ -101,12 +102,13 @@ if(!password_match){
 <FormErrorMessage  hideErrorOverlay ={setFormErrorMessage} error={errorMessage}/>
 : null
  }
- { isloading === true ?
- <FormSuccessMessage  />
-: successMessage === "Congratulations, your account has been created! Please Login to compete the Sign Up" ?
- <FormSuccessMessage successMessage={successMessage} />
+ { isLoading === true ?
+ <FormSuccessMessage />
+:
+successMessage === "Your account has been created! Please Login to complete the Sign Up" ?
+ <FormSuccessMessage successMessage={successMessage} close={setSuccessMessage}/>
    : null
-}
+ }
 
 </View>
 

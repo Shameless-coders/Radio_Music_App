@@ -1,18 +1,17 @@
 import React from 'react';
 import {Text ,View, ActivityIndicator ,StyleSheet,Image, TouchableOpacity} from 'react-native';
 import { Overlay } from 'react-native-elements';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
 const FormSuccessMessage = (props) => {
-const navigation = useNavigation();
+// const navigation = useNavigation();
   // function navigate(){
   //   navigation.navigate('Login');
   //
   // }
  return (
-
    props.successMessage ?
-     <Overlay overlayStyle={styles.Overlay} isVisible={true} onBackdropPress={()=>props.hideErrorOverlay(false)} >
+     <Overlay overlayStyle={styles.Overlay} isVisible={true} onBackdropPress={()=>props.close('') }>
      <Image
         style={styles.successLogo}
         source={require('../../../assets/images/success.png')}

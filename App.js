@@ -78,13 +78,13 @@ if(isSignedIn === true){
             name="Radio"
             component={ radioo }
           />
+            <Tab.Screen
+                name="Lyrics"
+                component={ Lyrics }
+            />
           <Tab.Screen
             name="Profile"
             component={ Profile }
-          />
-          <Tab.Screen 
-            name="Lyrics" 
-            component={ Lyrics } 
           />
         </Tab.Navigator>
       </NavigationContainer>

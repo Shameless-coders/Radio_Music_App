@@ -14,8 +14,7 @@ const Login = ({navigation}) => {
     navigation.navigate('SignUp');
   }
 
-    {/* */}
-const validatInput=()=>{
+const validateInput=()=>{
 
   var form_inputs = [email, password];
 
@@ -64,7 +63,7 @@ function PasswordChange(value){
 
       <TextInput placeholder={"Email address*"} value={email} onChangeText={EmailChange} placeholderTextColor={"#333"} style={styles.TextInput}/>
       <TextInput secureTextEntry={true}  value={password} onChangeText={PasswordChange} placeholder={"Password*"} placeholderTextColor={"#333"} style={styles.TextInput}/>
-      <TouchableOpacity style={styles.ButtonLogin} onPress={validatInput}>
+      <TouchableOpacity style={styles.ButtonLogin} onPress={validateInput}>
       <Text style={{ color:'#fff',fontSize:20,}}>Login</Text>
       </TouchableOpacity>
       <Text style={styles.LoginOptText}>Or</Text>
